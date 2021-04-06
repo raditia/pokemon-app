@@ -2,7 +2,12 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchPokemonDetail } from '../store/thunks'
+import './PokemonDetailPage.css'
+import config from "../config";
 
+const pokemonImage = (id) => {
+   return config.getApiImagePath(config.api.pokemon_image(id))
+}
 
 const PokemonDetailPage = ({ pokemonDetail, startFetchingPokemonDetail }) => {
    const { pokemonName } = useParams()
@@ -13,7 +18,7 @@ const PokemonDetailPage = ({ pokemonDetail, startFetchingPokemonDetail }) => {
       return (
          <div>
             <div>{pokemonDetail.name}</div>
-         <img src={pokemonDetail.sprites.front_default} alt=''/>
+            <img src={pokemonImage(pokemonDetail.id)} alt="" />
          </div>
       )
 }

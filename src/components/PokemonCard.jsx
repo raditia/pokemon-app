@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import config from '../config'
+
+import './PokemonCard.css'
 
 const ListItemContainer = styled.div`
   background: #fff;
@@ -11,11 +14,15 @@ const ListItemContainer = styled.div`
   cursor: pointer
 `
 
+const pokemonImage = (id) => {
+  return config.getApiImagePath(config.api.pokemon_image(id))
+}
+
 
 const PokemonCard = ({ pokemon, onItemPressed }) => (
    <ListItemContainer onClick={ () => onItemPressed(pokemon.name) }>
-      <div>{pokemon.name}</div>
-      <div>{ pokemon.url }</div>
+     <img src={pokemonImage(pokemon.id)} alt="" />
+     <div>{pokemon.name}</div>
    </ListItemContainer>
 )
 
