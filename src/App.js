@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import config from "./config";
 
 import PokemonListPage from "./pages/PokemonListPage";
 import PokemonDetailPage from "./pages/PokemonDetailPage";
@@ -9,10 +10,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route path="/list">
+          <Route path={config.app.pages.list}>
             <PokemonListPage />
           </Route>
-          <Route path="/detail/:pokemonName">
+          <Route path={config.app.pages.detail}>
             <PokemonDetailPage />
           </Route>
         </Switch>
