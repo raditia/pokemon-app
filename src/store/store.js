@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { pokemon } from "../store/reducers";
+import { pokemon } from "./reducers";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
-import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+// import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const reducers = {
@@ -13,7 +13,7 @@ const reducers = {
 const persistConfig = {
   key: "root",
   storage,
-  stateReconciler: autoMergeLevel2,
+  blacklist: ['pokemon']
 };
 const rootReducers = combineReducers(reducers);
 const persistedReducer = persistReducer(persistConfig, rootReducers);

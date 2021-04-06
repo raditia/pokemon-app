@@ -11,8 +11,15 @@ export const fetchPokemonList = (payload) => (dispatch) => {
   dispatch(loadPokemonInProgress());
   getPokemonList(
     (response) => {
-      dispatch(loadPokemonSuccess(response.data.results));
-      console.log(response);
+      response.data.results.forEach(result => {
+        getPokemonDetail(
+          (response) => {
+            dispatch(loadPokemonSuccess(response.data));
+          },
+          (error) => console.log(error),
+          result.name
+        );
+      })
     },
     (error) => {
       console.log(error);

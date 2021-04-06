@@ -21,11 +21,11 @@ export const pokemon = (state = INITIAL_STATE, action) => {
         isLoading: true,
       };
     case LOAD_POKEMON_SUCCESS:
-      const { pokemons } = payload;
+      const { pokemonData } = payload;
       return {
         ...state,
         isLoading: false,
-        pokemonList: pokemons,
+        pokemonList: [...state.pokemonList, pokemonData],
       };
     case LOAD_POKEMON_FAILURE:
       return {
@@ -33,11 +33,11 @@ export const pokemon = (state = INITIAL_STATE, action) => {
         isLoading: false,
       };
     case LOAD_POKEMON_DETAIL_SUCCESS:
-      const { pokemon } = payload;
+      const { pokemonDetail } = payload;
       return {
         ...state,
         isLoading: false,
-        pokemonDetail: pokemon,
+        pokemonDetail: pokemonDetail,
       };
     default:
       return state;

@@ -7,16 +7,16 @@ export const loadPokemonInProgress = () => ({
   type: LOAD_POKEMON_IN_PROGRESS,
 });
 
-export const loadPokemonSuccess = (pokemons) => ({
+export const loadPokemonSuccess = (pokemonData) => ({
   type: LOAD_POKEMON_SUCCESS,
-  payload: { pokemons },
+  payload: { pokemonData },
 });
 
 export const loadPokemonFailure = () => ({
   type: LOAD_POKEMON_FAILURE,
 });
 
-export const loadPokemonDetailSuccess = (pokemon) => ({
+export const loadPokemonDetailSuccess = (pokemonDetail) => ({
   type: LOAD_POKEMON_DETAIL_SUCCESS,
-  payload: { pokemon },
+  payload: { pokemonDetail },
 });
