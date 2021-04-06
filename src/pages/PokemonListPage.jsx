@@ -16,7 +16,7 @@ const PokemonListPage = ({ isLoading, pokemonList, startFetchingPokemonList }) =
       const route = `/detail/${name}`
       history.push(route)
    }
-   
+
    const isLoadingMessage = <div>Load Pokemon...</div>
    const content = (
       <div>
@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   startFetchingPokemonList: () => dispatch(fetchPokemonList({ limit: 100, offset: 200 }))
+   startFetchingPokemonList: () => dispatch(fetchPokemonList({ limit: 5 }))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonListPage)
