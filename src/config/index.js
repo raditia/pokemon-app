@@ -10,6 +10,7 @@ const config = {
     pages: {
       list: "/list",
       detail: "/detail/:pokemonName",
+      my_pokemon: '/my-pokemon'
     },
   },
   getApiPath: (apiPath) => `${config.api.basePath}${apiPath}`,
