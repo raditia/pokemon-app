@@ -4,6 +4,7 @@ export const LOAD_POKEMON_FAILURE = "LOAD_POKEMON_FAILURE";
 export const LOAD_POKEMON_DETAIL_SUCCESS = "LOAD_POKEMON_DETAIL_SUCCESS";
 export const SET_PAGINATION = 'SET_PAGINATION';
 export const RESET_STORE = 'RESET STORE';
+export const LOAD_MY_POKEMON_SUCCESS = 'LOAD_MY_POKEMON_SUCCESS';
 
 export const loadPokemonInProgress = () => ({
   type: LOAD_POKEMON_IN_PROGRESS,
@@ -29,6 +30,11 @@ export const setPagination = ({ next, previous}) => ({
     next,
     previous
   }
+})
+
+export const loadMyPokemonSuccess = (myPokemonList) => ({
+  type: LOAD_MY_POKEMON_SUCCESS,
+  payload: { myPokemonList }
 })
 
 export const resetStore = () => ({
