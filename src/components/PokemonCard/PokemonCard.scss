@@ -1,0 +1,30 @@
+.image {
+    margin-left: auto;
+    width: 200px;
+    height: 200px;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+}
+.type-icon {
+    width: 80px;
+}
+.pokemon {
+    &-title {
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        color: #404040;
+        word-break: break-word;
+        text-overflow: ellipsis;
+    }
+    &-subtitle {
+        font-size: 12px;
+        font-weight: bold;
+        color: darkgrey;
+    }
+}

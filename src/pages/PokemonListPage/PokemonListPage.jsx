@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { fetchPokemonList } from '../store/thunks'
+import { fetchPokemonList, fetchMyPokemonList } from '../store/thunks'
 import {getPokemonList, getIsLoading, getPagination} from '../store/selectors'
+import { decodeQueryParams } from "../utils/url";
 
 import Pagination from "../components/Pagination";
 import PokemonCard from '../components/PokemonCard'
 import PokemonSearchBar from "../components/PokemonSearchBar";
 
 import './PokemonListPage.css'
-import { decodeQueryParams } from "../utils/url";
 
-const PokemonListPage = ({ isLoading, pokemonList, pagination, startFetchingPokemonList }) => {
+const PokemonListPage = ({ isLoading, pokemonList, pagination, startFetchingPokemonList, startFetchMyPokemonList}) => {
    const history = useHistory()
    const [searchTerm, setSearchTerm] = React.useState("");
    const [searchResults, setSearchResults] = useState([]);
@@ -20,6 +20,7 @@ const PokemonListPage = ({ isLoading, pokemonList, pagination, startFetchingPoke
     startFetchingPokemonList({
        limit: 21
     })
+     startFetchMyPokemonList()
    }, [])
    useEffect(() => {
       const results = pokemonList.filter(pokemon =>
@@ -75,7 +76,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
    startFetchingPokemonList: ({limit = 21, offset = 0}) =>
-     dispatch(fetchPokemonList({ limit, offset }))
+     dispatch(fetchPokemonList({ limit, offset })),
+  startFetchMyPokemonList: () => dispatch(fetchMyPokemonList())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonListPage)
