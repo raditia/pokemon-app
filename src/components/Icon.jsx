@@ -3,7 +3,7 @@ import dark from '../assets/icons/dark.svg'
 import dragon from '../assets/icons/dragon.svg'
 import electric from '../assets/icons/electric.svg'
 import fairy from '../assets/icons/fairy.svg'
-import fight from '../assets/icons/fight.svg'
+import fighting from '../assets/icons/fight.svg'
 import fire from '../assets/icons/fire.svg'
 import flying from '../assets/icons/flying.svg'
 import ghost from '../assets/icons/ghost.svg'
@@ -23,7 +23,7 @@ const icons = {
   dragon,
   electric,
   fairy,
-  fight,
+  fighting,
   fire,
   flying,
   ghost,
