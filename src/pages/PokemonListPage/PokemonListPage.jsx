@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { fetchPokemonList, fetchMyPokemonList } from '../store/thunks'
-import {getPokemonList, getIsLoading, getPagination} from '../store/selectors'
-import { decodeQueryParams } from "../utils/url";
+import { fetchPokemonList } from '../../store/thunks'
+import {getPokemonList, getIsLoading, getPagination} from '../../store/selectors'
+import { decodeQueryParams } from "../../utils/url";
 
-import Pagination from "../components/Pagination";
-import PokemonCard from '../components/PokemonCard'
-import PokemonSearchBar from "../components/PokemonSearchBar";
+import Pagination from "../../components/Pagination";
+import PokemonCard from '../../components/PokemonCard/PokemonCard'
+import PokemonSearchBar from "../../components/PokemonSearchBar/PokemonSearchBar";
 
 import './PokemonListPage.css'
 
-const PokemonListPage = ({ isLoading, pokemonList, pagination, startFetchingPokemonList, startFetchMyPokemonList}) => {
-   const history = useHistory()
+const PokemonListPage = ({ isLoading, pokemonList, pagination, startFetchingPokemonList}) => {
+
    const [searchTerm, setSearchTerm] = React.useState("");
    const [searchResults, setSearchResults] = useState([]);
 
@@ -20,7 +19,6 @@ const PokemonListPage = ({ isLoading, pokemonList, pagination, startFetchingPoke
     startFetchingPokemonList({
        limit: 21
     })
-     startFetchMyPokemonList()
    }, [])
    useEffect(() => {
       const results = pokemonList.filter(pokemon =>
@@ -28,11 +26,6 @@ const PokemonListPage = ({ isLoading, pokemonList, pagination, startFetchingPoke
       );
       setSearchResults(results)
    }, [pokemonList, searchTerm])
-
-   const itemPressed = (name) => {
-      const route = `/detail/${name}`
-      history.push(route)
-   }
 
    const paginationPressed = (url) => {
       const params = decodeQueryParams(url)
@@ -54,7 +47,6 @@ const PokemonListPage = ({ isLoading, pokemonList, pagination, startFetchingPoke
               <PokemonCard
                 key={index}
                 pokemon={pokemon}
-                onItemPressed={ itemPressed }
               />
             ) }
          </div>
@@ -76,8 +68,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
    startFetchingPokemonList: ({limit = 21, offset = 0}) =>
-     dispatch(fetchPokemonList({ limit, offset })),
-  startFetchMyPokemonList: () => dispatch(fetchMyPokemonList())
+     dispatch(fetchPokemonList({ limit, offset }))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonListPage)
