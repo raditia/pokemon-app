@@ -3,14 +3,18 @@ import {
   loadPokemonSuccess,
   loadPokemonFailure,
   loadPokemonDetailSuccess,
+  setPagination,
+  resetStore
 } from "./actions";
 
 import { getPokemonList, getPokemonDetail } from "../api/pokemonService";
 
 export const fetchPokemonList = (payload) => (dispatch) => {
+  dispatch(resetStore())
   dispatch(loadPokemonInProgress());
   getPokemonList(
     (response) => {
+      dispatch(setPagination({ next: response.data.next, previous: response.data.previous }))
       response.data.results.forEach(result => {
         getPokemonDetail(
           (response) => {
