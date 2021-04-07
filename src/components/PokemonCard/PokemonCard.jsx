@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import config from '../config'
+import config from '../../config'
 
 import './PokemonCard.scss'
-import icons from '../components/Icon'
+import icons from '../Icon'
+import {useHistory} from "react-router-dom";
 
 const ListItemContainer = styled.div`
   background: #fff;
@@ -25,26 +26,34 @@ const pokemonType = (type) => {
 }
 
 
-const PokemonCard = ({ pokemon, onItemPressed }) => (
-   <ListItemContainer onClick={ () => onItemPressed(pokemon.name) }>
-     <img className="image" src={pokemonImage(pokemon.id)} alt="" />
-     <div>
-       <div className="pokemon-title">{pokemon.name.toUpperCase()}</div>
-       { pokemon.types.map( (type, index) =>
-         <img className="type-icon" src={pokemonType(type.type.name)} alt={type.type.name} key={index}/>
-       ) }
-     </div>
-     <div className="flex-container">
-       <div className="pokemon-subtitle">
-         <div>Height</div>
-         { pokemon.height * 10 } cm
-       </div>
-       <div className="pokemon-subtitle">
-         <div>Weight</div>
-         <div>{ pokemon.weight / 10 } kg</div>
-       </div>
-     </div>
-   </ListItemContainer>
-)
+const PokemonCard = ({ pokemon }) => {
+  const history = useHistory()
+  const itemPressed = (name) => {
+    const route = `/detail/${name}`
+    history.push(route)
+  }
+
+  return (
+    <ListItemContainer onClick={ () => itemPressed(pokemon.name) }>
+      <img className="image" src={pokemonImage(pokemon.id)} alt="" />
+      <div>
+        <div className="pokemon-title">{pokemon.nickname ? pokemon.nickname : pokemon.name.toUpperCase()}</div>
+        { pokemon.types.map( (type, index) =>
+          <img className="type-icon" src={pokemonType(type.type.name)} alt={type.type.name} key={index}/>
+        ) }
+      </div>
+      <div className="flex-container">
+        <div className="pokemon-subtitle">
+          <div>Height</div>
+          { pokemon.height * 10 } cm
+        </div>
+        <div className="pokemon-subtitle">
+          <div>Weight</div>
+          <div>{ pokemon.weight / 10 } kg</div>
+        </div>
+      </div>
+    </ListItemContainer>
+  )
+}
 
 export default PokemonCard
