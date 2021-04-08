@@ -4,7 +4,7 @@ import { fetchPokemonList } from '../../store/thunks'
 import {getPokemonList, getIsLoading, getPagination} from '../../store/selectors'
 import { decodeQueryParams } from "../../utils/url";
 
-import Pagination from "../../components/Pagination";
+import Pagination from "../../components/Pagination/Pagination";
 import PokemonCard from '../../components/PokemonCard/PokemonCard'
 import PokemonSearchBar from "../../components/PokemonSearchBar/PokemonSearchBar";
 
