@@ -1,11 +1,13 @@
 import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import {getIsLoading, getMyPokemon} from "../../store/selectors";
-import { fetchMyPokemonList } from "../../store/thunks";
+import {fetchMyPokemonList, removeMyPokemon} from "../../store/thunks";
 
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
 
-const MyPokemonPage = ({ isLoading, myPokemonList, startFetchMyPokemonList }) => {
+import './MyPokemonPage.scss'
+
+const MyPokemonPage = ({ isLoading, myPokemonList, startFetchMyPokemonList, startRemovePokemon }) => {
   useEffect(() => {
     startFetchMyPokemonList()
   }, [])
@@ -13,7 +15,7 @@ const MyPokemonPage = ({ isLoading, myPokemonList, startFetchMyPokemonList }) =>
   const content = (
     <div>
       <div>Hello, name</div>
-      <div>
+      <div className="my-pokemon-container">
         { myPokemonList.map((pokemon, index) =>
           <PokemonCard
             key={index}
@@ -32,7 +34,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  startFetchMyPokemonList: () => dispatch(fetchMyPokemonList())
+  startFetchMyPokemonList: () => dispatch(fetchMyPokemonList()),
+  startRemovePokemon: (pokemonId) => dispatch(removeMyPokemon(pokemonId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyPokemonPage)
