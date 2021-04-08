@@ -46,8 +46,7 @@ export const fetchPokemonDetail = (pokemonName) => (dispatch) => {
   );
 };
 
-export const catchPokemon = ({ pokemonDetail, nickname }) => (dispatch) => {
-  // dispatch(loadPokemonInProgress())
+export const catchPokemon = ({ pokemonDetail, nickname, isExists }) => (dispatch) => {
   const pokemonRef = db.collection('pokemonList').doc(nickname)
   const pokemonObj = {
     id: pokemonDetail.id,
@@ -61,8 +60,7 @@ export const catchPokemon = ({ pokemonDetail, nickname }) => (dispatch) => {
     .then((docSnapshot) => {
       if (docSnapshot.exists) {
         pokemonRef.onSnapshot((doc) => {
-          // do stuff with the data
-          console.log('exist')
+          isExists(nickname)
         });
       } else {
         pokemonRef.set({
