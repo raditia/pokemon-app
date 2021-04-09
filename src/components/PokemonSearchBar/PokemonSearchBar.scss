@@ -1,0 +1,13 @@
+.search-bar {
+  &-container {
+    width: 100%;
+    margin: auto;
+  }
+    &-input {
+      width: 100%;
+      max-width: 375px;
+      padding:16px;
+      border:0;
+      box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    }
+}

@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 
+import './PokemonSearchBar.scss'
+
 const PokemonSearchBar = ({ onSearchPokemon }) => {
   const [searchPokemon, setSearchPokemon] = useState('')
 
@@ -8,8 +10,9 @@ const PokemonSearchBar = ({ onSearchPokemon }) => {
     onSearchPokemon(term)
   }
   return (
-    <div>
+    <div className="search-bar-container">
       <input
+        className="search-bar-input"
         type="text"
         placeholder="Search Pokemon"
         value={searchPokemon}
