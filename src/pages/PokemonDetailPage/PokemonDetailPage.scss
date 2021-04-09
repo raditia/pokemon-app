@@ -1,3 +1,5 @@
+@import './src/assets/css/responsive.scss';
+
 .pokemon-detail {
   &-container {
     display: flex;
@@ -28,6 +30,9 @@
     display: flex;
     align-items: center;
     padding-bottom: 8px;
+    @include mobile {
+      display: block;
+    }
     &-name {
       color: #404040;
       font-weight: bold;
@@ -88,8 +93,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    @include mobile {
+      display: block;
+    }
+
   }
   &-main-info {
     text-align: left;
+    @include mobile {
+      text-align: center;
+    }
   }
 }

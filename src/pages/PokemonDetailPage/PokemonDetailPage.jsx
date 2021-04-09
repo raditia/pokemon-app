@@ -22,7 +22,7 @@ const ListItemContainer = styled.div`
   padding: 16px;
   width:100%;
   max-width: 1200px;
-  margin-top: 16px;
+  margin: auto;
 `
 
 
@@ -157,6 +157,7 @@ const PokemonDetailPage = ({ isLoading, pokemonDetail, startFetchingPokemonDetai
   const content = (
     <div>
       {topContent}
+      <br/>
       {bottomContent}
     </div>
   )
