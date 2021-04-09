@@ -5,7 +5,7 @@ import './Header.scss'
 
 const Header = () => (
   <div className="header">
-    <a href="#default" className="logo">Pokemon App</a>
+    <a href="" className="logo">Pokemon App</a>
     <div className="header-right">
       <a href={config.app.pages.list}>Home</a>
       <a href={config.app.pages.my_pokemon}>My Pokemon</a>
