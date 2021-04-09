@@ -1,5 +1,5 @@
 import "./App.scss";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import config from "./config";
 
 import Header from "./components/Header/Header";
@@ -13,6 +13,9 @@ function App() {
       <Header />
       <BrowserRouter>
         <Switch>
+          <Route exact path="/">
+            <Redirect to={config.app.pages.list} />
+          </Route>
           <Route path={config.app.pages.list}>
             <PokemonListPage />
           </Route>
