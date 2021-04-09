@@ -21,3 +21,13 @@ export const failedModal = (nickname = '') => {
     text: nickname ? `${nickname} already exist!` : 'It runs away!'
   })
 }
+
+export const successDeleteModal = ({ nickname, fn}) => {
+  MySwal.fire({
+    icon: 'success',
+    title: `${nickname} has been deleted`,
+    text: 'You can catch it again anytime'
+  }).then((result) => {
+    fn(result)
+  })
+}
