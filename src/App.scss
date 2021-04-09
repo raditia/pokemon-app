@@ -1,5 +1,11 @@
+@import './src/assets/css/responsive.scss';
+
 .App {
   text-align: center;
+  margin: 100px auto 0px auto;
+  @include mobile {
+    margin: 200px auto 0px auto;
+  }
 }
 
 .App-logo {

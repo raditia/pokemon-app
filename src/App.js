@@ -1,19 +1,26 @@
-import "./App.css";
+import "./App.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import config from "./config";
 
-import PokemonListPage from "./pages/PokemonListPage";
-import PokemonDetailPage from "./pages/PokemonDetailPage";
+import Header from "./components/Header/Header";
+import PokemonListPage from "./pages/PokemonListPage/PokemonListPage";
+import PokemonDetailPage from "./pages/PokemonDetailPage/PokemonDetailPage";
+import MyPokemonPage from "./pages/MyPokemonPage/MyPokemonPage";
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <BrowserRouter>
         <Switch>
-          <Route path="/list">
+          <Route path={config.app.pages.list}>
             <PokemonListPage />
           </Route>
-          <Route path="/detail/:pokemonName">
+          <Route path={config.app.pages.detail}>
             <PokemonDetailPage />
+          </Route>
+          <Route path={config.app.pages.my_pokemon}>
+            <MyPokemonPage />
           </Route>
         </Switch>
       </BrowserRouter>
