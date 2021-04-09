@@ -12,7 +12,6 @@ const ListItemContainer = styled.div`
   box-shadow: 0 0 24px -4px rgba(0,0,0,.12);
   padding: 16px;
   width:250px;
-  height:312px;
   margin-top: 16px;
   cursor: pointer
 `
@@ -26,7 +25,7 @@ const pokemonType = (type) => {
 }
 
 
-const PokemonCard = ({ pokemon }) => {
+const PokemonCard = ({ pokemon, hasRemoveButton = false, onRemovePressed }) => {
   const history = useHistory()
   const itemPressed = (name) => {
     const route = `/detail/${name}`
@@ -34,24 +33,29 @@ const PokemonCard = ({ pokemon }) => {
   }
 
   return (
-    <ListItemContainer onClick={ () => itemPressed(pokemon.name) }>
-      <img className="image" src={pokemonImage(pokemon.id)} alt="" />
-      <div>
-        <div className="pokemon-title">{pokemon.nickname ? pokemon.nickname : pokemon.name.toUpperCase()}</div>
-        { pokemon.types.map( (type, index) =>
-          <img className="type-icon" src={pokemonType(type.type.name)} alt={type.type.name} key={index}/>
-        ) }
-      </div>
-      <div className="flex-container">
-        <div className="pokemon-subtitle">
-          <div>Height</div>
-          { pokemon.height * 10 } cm
+    <ListItemContainer>
+      <div onClick={ () => itemPressed(pokemon.name) }>
+        <img className="image" src={pokemonImage(pokemon.id)} alt="" />
+        <div>
+          <div className="pokemon-title">{pokemon.nickname ? pokemon.nickname : pokemon.name.toUpperCase()}</div>
+          { pokemon.types.map( (type, index) =>
+            <img className="type-icon" src={pokemonType(type.type.name)} alt={type.type.name} key={index}/>
+          ) }
         </div>
-        <div className="pokemon-subtitle">
-          <div>Weight</div>
-          <div>{ pokemon.weight / 10 } kg</div>
+        <div className="flex-container">
+          <div className="pokemon-subtitle">
+            <div>Height</div>
+            { pokemon.height * 10 } cm
+          </div>
+          <div className="pokemon-subtitle">
+            <div>Weight</div>
+            <div>{ pokemon.weight / 10 } kg</div>
+          </div>
         </div>
       </div>
+      { hasRemoveButton
+        ? <button className="pokemon-remove" type="button" onClick={() => onRemovePressed(pokemon.nickname)}>Release</button>
+        : null }
     </ListItemContainer>
   )
 }
