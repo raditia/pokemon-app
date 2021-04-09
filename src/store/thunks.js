@@ -87,10 +87,10 @@ export const fetchMyPokemonList = () => async (dispatch) => {
   dispatch(loadMyPokemonSuccess(list))
 }
 
-export const removeMyPokemon = (pokemonId) => (dispatch) => {
+export const removeMyPokemon = ({ pokemonId, success }) => (dispatch) => {
   db.collection('pokemonList')
     .doc(pokemonId.toString())
     .delete()
-    .then(() => console.log('delete success'))
+    .then(() => success(pokemonId))
     .catch(error => console.log(error))
 }
